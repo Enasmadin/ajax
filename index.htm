@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+    <title>ajax</title>
+</head>
+<body>
+    <button onclick="getrepo()"> GetRepo</button>
+    <button data-page="demo-one.html"> enas  </button>
+    <input type="text" class="my-com">
+    <div id ="show"></div>
+    <!-- <script>
+       function getrepo()
+       {
+    //     var myrequest = new XMLHttpRequest();
+    //      myrequest.onreadystatechange = function() {
+    //         if (this.readyState === 4 && this.status ===200) {
+    //             // console.log(this.responseText);
+    //             var myobject = JSON.parse(this.responseText),
+    //             // console.log(myobject);
+    //             mytext = "";
+    //             for(var i = 0 ;i < myobject.length ; i++){
+    //                 console.log(myobject[i]);
+    //                 mytext += myobject[i].username + "<br>" ;
+    //                 console.log (mytext);
+
+    //             }
+    //             document.getElementById("show").innerHTML = mytext ;
+                
+    //         }
+    //    }
+    //    Function getRepos() {
+        var myrequest = new XMLHttpRequest();
+         myrequest.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status ===200) {
+                console.log(this.responseText);
+                
+            }
+            
+        }
+        // myrequest.open( "GET" ,"auth.php?name=sayed",true);
+        // myrequest.send();
+        // myrequest.open("POST","auth.php",true);
+        // myrequest.setRequestHeader("content-Type","application/x-ww-form-urlncoded");
+        // myrequest.send("name=enas");
+        
+       }
+    </script> -->
+
+
+
+    <!-- jquary -->
+    <!-- <script>
+        $(function () {
+            $("button").on("click",function () {
+            $("#show") .load($(this).data("page")+ " .content",function (restext,sttext,xhr) {
+                if(this.sttext==="success"){
+                    console.log("enas ")
+                }
+                
+            })
+        })
+            
+        })
+       
+     </script> -->
+
+     <!-- get and post in jquary  -->
+     <!-- <script>
+        $(function() {
+            $("button").on("click",function () {
+
+                //  get 
+                // $.get("auth.php?name=osama",function (data,status,xhr) {
+                //     console.log(data);
+                //     console.log(status);
+                //     console.log(xhr);
+                    
+                // })
+                 
+                // post 
+                $.post("auth.php",{name:"osama"},function (data,status,xhr) {
+                   
+                    console.log(data);
+                    console.log(status);
+                   console.log(xhr);
+                    
+                })
+            })
+            
+        })
+     </script> -->
+
+     <!-- post and get  -->
+     <script>
+        $(function () {
+            $("button").on("click",function () {
+              $.ajax({
+                method:"POST",
+                url:"comments.php",
+                // type:"post" in less jquary <  1.9.0
+                // async:false,
+                // timeout:300, wait this time to make request 
+                // contentType:"mulipart/form-data", in upload file 
+                // password 
+                // user-name 
+                data:{
+                    // name:"osama",
+                    // comment 
+                    comment:"$(.my-com).val()" ,
+                },
+                success:function (data,status,xhr) {
+                    console.log(data);
+                    console.log(status);
+                    console.log(xhr) ;
+                    $('#show').html(data);
+
+                },
+                error:function (one,two,three) {
+                    console.log(one);
+                    console.log(two);
+                    console.log(three);
+                    
+                },
+                complete(xhr,status){
+                    console.log(status);
+                    console.log(xhr);
+                },
+                beforeSend:function(xhr){
+                    console.log('before send ')
+                }
+                              })
+                
+            })
+            
+        })
+     </script>
+       
+    
+</body>
+</html>
